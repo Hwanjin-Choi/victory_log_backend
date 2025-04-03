@@ -36,9 +36,6 @@ def get_dynamic_html(url):
     driver.quit()  # 브라우저 종료
     return html
 
-# 크롤링할 웹사이트 URL 입력 (반드시 실제 웹사이트 주소로 변경해주세요!)
-# url = "https://m.sports.naver.com/kbaseball/schedule/index?category=kbo" # 기존의 하드코딩된 URL
-
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         target_url = sys.argv[1]
@@ -55,7 +52,7 @@ if __name__ == "__main__":
 
         if home_container_div:
             # 찾은 Home_container__ div 내의 모든 경기 목록 그룹 찾기
-            match_list_groups = home_container_div.find_all('div', class_=re.compile(r'ScheduleLeagueType_match_list_group__\w+'))
+            match_list_groups = home_container_div.find_all('div', class_=re.compile(r'ScheduleLeagueType_type_today\w+'))
 
             for match_list_group in match_list_groups:
                 match_date = ""  # Initialize match_date for each group
