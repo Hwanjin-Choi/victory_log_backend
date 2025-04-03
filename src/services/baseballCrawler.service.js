@@ -8,11 +8,10 @@ const path = require("path");
 const pythonExecPath = "/usr/bin/python3";
 const csvFilePath = path.join(__dirname, "../../baseball_data.csv");
 
-const fetchBaseballDataFromPython = async () => {
+const fetchBaseballDataFromPython = async (date, team) => {
   return new Promise((resolve, reject) => {
     const maxBufferSize = 1024 * 1024 * 5; // Increased maxBuffer to 5MB
-    const crawlUrl =
-      "https://m.sports.naver.com/kbaseball/schedule/index?category=kbo&date=2025-04-01&teamCode=SK";
+    const crawlUrl = `https://m.sports.naver.com/kbaseball/schedule/index?category=kbo&date=${date}&teamCode=${team}`;
     exec(
       `${pythonExecPath} crawl.py "${crawlUrl}"`,
       { maxBuffer: maxBufferSize },

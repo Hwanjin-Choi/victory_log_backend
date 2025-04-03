@@ -1,9 +1,13 @@
 // src/models/baseball.model.js
 const baseballCrawlerService = require("../services/baseballCrawler.service");
 
-const getBaseballRecordFromExternalSource = async () => {
+const getBaseballRecordFromExternalSource = async (date, team) => {
   try {
-    const data = await baseballCrawlerService.fetchBaseballDataPython();
+    console.log(date, team, "from model");
+    const data = await baseballCrawlerService.fetchBaseballDataPython(
+      date,
+      team
+    );
     /* console.log("Python Crawl Success, CSV Reading");
     const data = await baseballCrawlerService.fetchBaseballDataCSV(); */
 

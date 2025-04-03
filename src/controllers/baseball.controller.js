@@ -2,8 +2,11 @@
 const baseballModel = require("../models/baseball.model");
 
 const getBaseballRecord = async (req, res) => {
+  console.log(req.query, "check");
+  const { date, team } = req.query;
+
   try {
-    const record = await baseballModel.getBaseballRecord();
+    const record = await baseballModel.getBaseballRecord(date, team);
     res.status(200).json(record); // 성공 시 200 상태 코드와 함께 JSON 응답
   } catch (error) {
     console.error("야구 기록 조회 중 오류 발생:", error);
